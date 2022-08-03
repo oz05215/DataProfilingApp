@@ -1,0 +1,11 @@
+numpy
+pandas
+scipy
+matplotlib
+streamlit
+pandas-profiling
+<<<<<<< HEAD
+streamlit-pandas-profiling
+=======
+streamlit-pandas-profiling
+>>>>>>> d4c850010e304804f6c48e1e676e4dc496159f9b
