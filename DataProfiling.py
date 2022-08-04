@@ -13,7 +13,7 @@ with st.sidebar:
     
 if upload_file is not None:
     #time bing let load csv
-    df = pd.read_csv(upload_file)
+    df = pd.read_excel(upload_file)
     
     #generate report
     with st.spinner("Generating Report"):
