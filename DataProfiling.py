@@ -6,7 +6,7 @@ import sys
 import os
 import datetime
 from datetime import timedelta
-import extra_streamlit_components as stx
+#import extra_streamlit_components as stx
 
 st.set_page_config(page_title = 'Data Profiler',layout='wide')
 
