@@ -7,6 +7,6 @@ pandas-profiling
 streamlit-pandas-profiling
 openpyxl
 xlrd
-streamlit_authenticator
+streamlit_authenticator==0.1.5 
 pathlib
 
