@@ -9,3 +9,6 @@ openpyxl
 xlrd
 streamlit_authenticator
 streamlit-authenticator
+pickle
+pathlib
+
