@@ -64,7 +64,10 @@ if authentication_status == True:
         
     if upload_file is not None:
         #time bing let load csv
-        df = pd.read_excel(upload_file)
+        try:
+            df = pd.read_excel(upload_file)
+        except:
+            df = df = pd.read_csv(upload_file)
         
         #generate report
         with st.spinner("Generating Report"):
