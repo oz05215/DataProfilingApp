@@ -61,7 +61,13 @@ if authentication_status == True:
     with st.sidebar:
         upload_file = st.file_uploader("upload .csv or .xlsx files not exceeding 200 mb")
         authenticator.logout('Logout','sidebar')
+        try:
+            if authenticator.reset_password(username, 'Reset password', 'sidebar'):
+                st.success('Password modified successfully')
+        except Exception as e:
+            st.error(e)
         
+
     if upload_file is not None:
         #time bing let load csv
         try:
