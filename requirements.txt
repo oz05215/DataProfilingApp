@@ -8,7 +8,6 @@ streamlit-pandas-profiling
 openpyxl
 xlrd
 streamlit_authenticator
-streamlit-authenticator
 pickle
 pathlib
 
