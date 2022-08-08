@@ -7,4 +7,4 @@ pandas-profiling
 streamlit-pandas-profiling
 openpyxl
 xlrd
-streamlit-authenticator
+streamlit_authenticator
