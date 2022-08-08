@@ -6,82 +6,62 @@ import sys
 import os
 import datetime
 from datetime import timedelta
+import pickle
+from pathlib import Path
+import streamlit_authenticator as stauth
+import jwt
+import bcrypt
+import streamlit as st
+from datetime import datetime, timedelta
+import extra_streamlit_components as stx
+
+from .hasher import Hasher
+from .utils import generate_random_pw
+
+from .exceptions import CredentialsError, ResetError, RegisterError, ForgotError, UpdateError
+
 #import extra_streamlit_components as stx
 
 st.set_page_config(page_title = 'Data Profiler',layout='wide')
 
+with open('../config.yaml') as file:
+    config = yaml.load(file, Loader=SafeLoader)
 
+authenticator = Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
 
+name, authentication_status, username = authenticator.login('Login', 'main')
 
+if authentication_status:
+    authenticator.logout('Logout', 'main')
+    st.write(f'Welcome *{name}*')
+    st.title('Some content')
+elif authentication_status == False:
+    st.error('Username/password is incorrect')
+elif authentication_status == None:
+    st.warning('Please enter your username and password')
     
-import pickle
-from pathlib import Path
-import streamlit_authenticator as stauth
-
-
-
-
+if st.session_state["authentication_status"]:
+    authenticator.logout('Logout', 'main')
+    st.write(f'Welcome *{st.session_state["name"]}*')
+    st.title('Some content')
+elif st.session_state["authentication_status"] == False:
+    st.error('Username/password is incorrect')
+elif st.session_state["authentication_status"] == None:
+    st.warning('Please enter your username and password')
     
-#for item in st.session_state.items():
-#    item
-
-#User authentication
-
-names = ['OscarZeledon','DaniBlanco']
-usernames = ['Oskir','Dblanco']
-#passwords = ['Cestern22','12345']
-
-
-
-#load hashed passwords
-file_path = Path(__file__).parent / 'Hashed_pw.pkl'
-with file_path.open('rb') as file:
-    hashed_passwords = pickle.load(file)
-   
-#delete_all_cookies()
-
-authenticator = stauth.Authenticate(names, usernames, hashed_passwords,'sales_dashboard', 'abcdef', cookie_expiry_days=0)
-
-name, authentication_status, username = authenticator.login("Login","sidebar")
-
-#if authentication_status not in st.session_state:
-#    authentication_status = st.session_state.authentication_status
-
-if authentication_status == False:
-    st.error('Username/Password is incorrect')
     
-if authentication_status == None:
-    st.error('Please enter your username and password')
-    
-if authentication_status == True:
-
-    #sidebar
-
-    
-    with st.sidebar:
-        upload_file = st.file_uploader("upload .xlsx file not exceeding 200 mb")
-        authenticator.logout('Logout','sidebar')
-        
-    if upload_file is not None:
-        #time bing let load csv
-        df = pd.read_excel(upload_file)
-        
-        #generate report
-        with st.spinner("Generating Report"):
-            pr = ProfileReport(df)
-            
-        st_profile_report(pr)
-        
-
-        
-
-#        try:
-#            if authenticator.reset_password(username, 'Reset password', 'sidebar'):
-#                st.success('Password modified successfully')
-#        except Exception as e:
-#            st.error(e)
-        
-#RESET PASSWORD WIDGET
+if authentication_status:
+    try:
+        if authenticator.reset_password(username, 'Reset password'):
+            st.success('Password modified successfully')
+    except Exception as e:
+        st.error(e)
 
 
 
