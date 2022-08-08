@@ -59,7 +59,7 @@ if authentication_status == True:
 
     
     with st.sidebar:
-        upload_file = st.file_uploader("upload .xlsx file not exceeding 200 mb")
+        upload_file = st.file_uploader("upload .csv or .xlsx files not exceeding 200 mb")
         authenticator.logout('Logout','sidebar')
         
     if upload_file is not None:
