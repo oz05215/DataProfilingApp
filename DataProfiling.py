@@ -34,7 +34,7 @@ usernames = ['Oskir','Dblanco']
 
 
 #load hashed passwords
-file_path = Path(__file__).parent / r'C:\Users\oscar\Desktop\Aden Business School\TFM\Streamlit\DataProfiling\Hashed_pw.pkl'
+file_path = Path(__file__).parent / 'Hashed_pw.pkl'
 with file_path.open('rb') as file:
     hashed_passwords = pickle.load(file)
    
