@@ -22,7 +22,9 @@ import streamlit_authenticator as stauth
 
     #sidebar
 
-st.write("## This Data Profiler tool has been developed by Oscar Zeledon")
+st.write("## This Data Profiling tool has been developed by Oscar Zeledon")
+st.write("")
+st.write("# Expand the left sidebar and upload your csv or excel file to be analyzed")
 
 with st.sidebar:
     upload_file = st.file_uploader("upload .csv or .xlsx files not exceeding 200 mb")
