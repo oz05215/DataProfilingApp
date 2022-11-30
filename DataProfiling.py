@@ -20,41 +20,6 @@ import streamlit_authenticator as stauth
 
 
 
-
-'''    
-#for item in st.session_state.items():
-#    item
-
-#User authentication
-
-names = ['OscarZeledon','DaniBlanco']
-usernames = ['password','Dblanco']
-#passwords = ['Cestern22','12345']
-
-
-
-#load hashed passwords
-file_path = Path(__file__).parent / 'Hashed_pw.pkl'
-with file_path.open('rb') as file:
-    hashed_passwords = pickle.load(file)
-   
-#delete_all_cookies()
-
-authenticator = stauth.Authenticate(names, usernames, hashed_passwords,'sales_dashboard', 'abcdef', cookie_expiry_days=0)
-
-name, authentication_status, username = authenticator.login("Login","sidebar")
-
-#if authentication_status not in st.session_state:
-#    authentication_status = st.session_state.authentication_status
-
-if authentication_status == False:
-    st.error('Username/Password is incorrect')
-    
-if authentication_status == None:
-    st.error('Please enter your username and password')
-    
-if authentication_status == True:
-'''
     #sidebar
 
 st.write("## This Data Profiler tool has been developed by Oscar Zeledon")
