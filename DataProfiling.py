@@ -21,7 +21,7 @@ import streamlit_authenticator as stauth
 
 
 
-    
+'''    
 #for item in st.session_state.items():
 #    item
 
@@ -54,30 +54,30 @@ if authentication_status == None:
     st.error('Please enter your username and password')
     
 if authentication_status == True:
-
+'''
     #sidebar
 
-    st.write("## This Data Profiler tool has been developed by Oscar Zeledon")
-    st.write("## Choose a csv or xlsx file at the left sidebar to profile it")
-    with st.sidebar:
-        upload_file = st.file_uploader("upload .csv or .xlsx files not exceeding 200 mb")
-        authenticator.logout('Logout','sidebar')
+st.write("## This Data Profiler tool has been developed by Oscar Zeledon")
 
-        
+with st.sidebar:
+    upload_file = st.file_uploader("upload .csv or .xlsx files not exceeding 200 mb")
+ #   authenticator.logout('Logout','sidebar')
 
-    if upload_file is not None:
-        #time bing let load csv
-        try:
-            df = pd.read_excel(upload_file)
-        except:
-            df = df = pd.read_csv(upload_file)
+    
+
+if upload_file is not None:
+    #time bing let load csv
+    try:
+        df = pd.read_excel(upload_file)
+    except:
+        df = df = pd.read_csv(upload_file)
+    
+    #generate report
+    with st.spinner("Generating Report"):
+        pr = ProfileReport(df)
         
-        #generate report
-        with st.spinner("Generating Report"):
-            pr = ProfileReport(df)
-            
-        st_profile_report(pr)
-        
+    st_profile_report(pr)
+    
 
         
 
