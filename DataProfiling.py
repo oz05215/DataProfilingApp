@@ -28,7 +28,7 @@ import streamlit_authenticator as stauth
 #User authentication
 
 names = ['OscarZeledon','DaniBlanco']
-usernames = ['Oskir','Dblanco']
+usernames = ['password','Dblanco']
 #passwords = ['Cestern22','12345']
 
 
@@ -57,7 +57,8 @@ if authentication_status == True:
 
     #sidebar
 
-    
+    st.write("## This Data Profiler tool has been developed by Oscar Zeledon")
+    st.write("## Choose a csv or xlsx file at the left sidebar to profile it")
     with st.sidebar:
         upload_file = st.file_uploader("upload .csv or .xlsx files not exceeding 200 mb")
         authenticator.logout('Logout','sidebar')
